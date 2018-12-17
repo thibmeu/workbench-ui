@@ -11,7 +11,7 @@ import Page from './Page';
 class App extends React.Component {
     render() {
         return (
-            <BrowserRouter>
+            <BrowserRouter basename={process.env.PUBLIC_URL}>
                 <div>
                     <Navigation/>
                     <Route exact path='/?advanced' component={Home}/>
