@@ -1,27 +1,12 @@
 import React from 'react';
 import PageListItem from './PageListItem';
 import {connect} from 'react-redux';
-import SampleData from '../../pages';
-import {updatePages} from '../../actions';
-import {DIFFICULTY, CATEGORY_FILTER_TYPE} from "../../actions";
-import _ from 'lodash';
+import {CATEGORY_FILTER_TYPE, DIFFICULTY} from '../../actions';
 
 class PageList extends React.Component {
-    constructor(props) {
-        super(props);
-        this.props.updatePages(SampleData.pages);
-    }
-
     render() {
-        let content = [];
-        const rows = _.chunk(this.props.pages, 3);
-
-        for (let row of rows) {
-            content.push(<div className='tile is-ancestor'>
-                {row.map(page => <PageListItem key={page.id} page={page}/>)}
-            </div>);
-        }
-        return content;
+        const content = this.props.pages.map(page => <PageListItem key={page.url} page={page}/>);
+        return (<div className='tile is-ancestor columns is-multiline'>{content}</div>);
     }
 }
 
@@ -32,6 +17,7 @@ const getVisiblePagesByDifficulty = (pages, difficulty) => {
     }
     return filteredPages;
 };
+
 
 const getVisiblePagesByCategories = (pages, categories, categoryFilterType) => {
     let filteredPages = [...pages];
@@ -79,11 +65,6 @@ const mapStateToProps = state => {
     };
 };
 
-const mapDispatchToProps = dispatch => {
-    return {
-        updatePages: pages => dispatch(updatePages(pages))
-    };
-};
 
-const ConnectedTopicList = connect(mapStateToProps, mapDispatchToProps)(PageList);
+const ConnectedTopicList = connect(mapStateToProps)(PageList);
 export default ConnectedTopicList;

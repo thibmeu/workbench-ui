@@ -15,18 +15,27 @@ class CategoryFilter extends React.Component {
         ${this.props.categoryFilterType === filterType ? ` is-success is-active is-focused` : ''}`;
     }
 
-    render() {
-        return (
-            <div>
-                <div className='is-pulled-left'>
-                    <p className='has-text-grey-light'>Available Categories:</p>
-                    <span classname='tags'>
+    getAvailableCategoryList() {
+        if (this.props.availableCategories.length > 0) {
+            return (
+                <p className='has-text-grey-light'>
+                    <span className='float-left mr10'>Available Categories</span>
+                    <span className='tags'>
                     {this.props.availableCategories.map(
                         cat => <span key={cat}
                                      onClick={() => this.handleCategoryClick(cat)}
                                      className='tag catItem catLink'>{cat}</span>)}
-                                     </span>
-                </div>
+                     </span>
+                </p>);
+        } else {
+            return <p>&nbsp;</p>
+        }
+    }
+
+    render() {
+        return (
+            <div>
+                <div className='is-pulled-left'>{this.getAvailableCategoryList()}</div>
                 <div className='clearBoth'>
                     <form onSubmit={this.handleSubmit}>
                         <div className='field has-addons'>
