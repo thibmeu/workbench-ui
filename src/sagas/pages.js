@@ -1,12 +1,13 @@
 import {call, put, takeEvery, takeLatest} from 'redux-saga/effects';
-import axios from 'axios';
 import {
-    loadPagesFailure,
-    loadPagesSuccess,
+    ACTIONS,
+    DIFFICULTY,
     loadPageContentFailure,
     loadPageContentSuccess,
-    DIFFICULTY, ACTIONS
+    loadPagesFailure,
+    loadPagesSuccess
 } from '../actions';
+import {fetchUrl} from "../lib/helpers";
 
 const BASE_URL = process.env.REACT_APP_JSONFEED_BASE;
 
@@ -17,15 +18,11 @@ const pageSagas = [
 
 export default pageSagas;
 
-function fetchUrl(url) {
-    return axios({
-        method: "get", url: url
-    });
-}
+
 
 function* workerFetchPageList() {
     try {
-        const response = yield call(fetchUrl, BASE_URL + "index.html");
+        const response = yield call(fetchUrl, BASE_URL);
         const pages = response.data.pages;
         for (const page of pages) {
             if (page.difficulty !== DIFFICULTY.EASY
@@ -43,8 +40,13 @@ function* workerFetchPageList() {
 
 function* workerFetchPageContent(action) {
     try {
-        const response = yield call(fetchUrl, BASE_URL + action.pageUrl);
-        yield put(loadPageContentSuccess(response.data));
+        const pageUrl = BASE_URL + action.pageUrl;
+        const response = yield call(fetchUrl, pageUrl);
+        if(response.data.url !== action.pageUrl) {
+            yield put(loadPageContentFailure("Could not load page content.", {url: action.pageUrl}));
+        } else {
+            yield put(loadPageContentSuccess(response.data));
+        }
     } catch (error) {
         console.log('error loading page content', error);
         yield put(loadPageContentFailure(error));

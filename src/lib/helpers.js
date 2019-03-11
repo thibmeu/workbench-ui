@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export const getDifficultyColorForTag = (difficulty) => {
     switch (difficulty) {
         case "easy":
@@ -13,7 +15,9 @@ export const getDifficultyColorForTag = (difficulty) => {
 };
 
 export const urlify = (string_value) => {
-    return string_value.split(' ').join('_').toLowerCase();
+    if(string_value) return string_value.split(' ').join('_');
+    console.log('warning: undefined value in urlify');
+    return "undefined"
 };
 
 export const buildPageUrl = (categoryName, pageTitle) => {
@@ -22,4 +26,14 @@ export const buildPageUrl = (categoryName, pageTitle) => {
 
 export const buildCategoryUrl = (categoryName) => {
     return `/pages/${urlify(categoryName)}`;
+};
+
+export const fetchUrl = (url) => {
+    return axios({
+        method: "get", url: url
+    });
+};
+
+export const postUrl = (url, data) => {
+  return axios({ method: "post", url: url, data: data});
 };

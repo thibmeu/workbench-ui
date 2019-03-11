@@ -3,11 +3,15 @@ import Navigation from './layout/Navigation';
 import {BrowserRouter, Redirect, Route, Switch} from 'react-router-dom';
 import Home from './Home';
 import Login from './user/Login';
-import Pages from './Pages';
-import Page from './Page';
+import Logout from './user/Logout';
+import Pages from './page/Pages';
+import Page from './page/Page';
 import {loadPages} from "../actions";
 import {connect} from "react-redux";
 import Footer from './layout/Footer';
+import Profile from "./user/Profile";
+import ProfileEdit from "./user/ProfileEdit";
+import Playground from "./Playground";
 
 class App extends React.Component {
 
@@ -20,12 +24,16 @@ class App extends React.Component {
             <BrowserRouter basename={process.env.PUBLIC_URL}>
                 <div>
                     <Navigation/>
+                    <Route path='/demo' component={Playground} />
                     <Route exact path='/?advanced' component={Home}/>
                     <Route exact path='/' component={Home}/>
-                    <Route path='/login' component={Login}/>
+                    <Route path='/login/:app?' component={Login}/>
+                    <Route path='/logout' component={Logout}/>
+                    <Route exact path='/profile' component={Profile}/>
+                    <Route exact path='/profile/edit' component={ProfileEdit}/>
                     <Route path='/pages/:category/:page' component={Page}/>
                     <Switch>
-                        <Redirect from='/start' to='/pages/introduction'/>
+                        <Redirect from='/start' to='/pages/0introduction'/>
                         <Route exact path='/pages/:category' component={Pages}/>
                     </Switch>
                     <Footer/>

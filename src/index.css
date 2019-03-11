@@ -32,6 +32,9 @@ code {
     clear: both;
 }
 
+.mb70 {
+    margin-bottom: 70px;
+}
 .mb30 {
     margin-bottom: 30px;
 }
@@ -50,6 +53,10 @@ code {
 
 .mr10 {
     margin-right: 10px;
+}
+
+.ml10 {
+    margin-left: 10px;
 }
 
 .is-parent .tile:hover {
