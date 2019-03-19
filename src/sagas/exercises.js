@@ -1,20 +1,18 @@
-import {put, take, takeEvery} from 'redux-saga/effects';
+import {call, put, take, takeEvery} from 'redux-saga/effects';
+import {ACTIONS} from '../actions';
+import {checkWeb3Account} from '../actions/web3';
 import {
-    ACTIONS,
-    checkWeb3Account,
     compile,
-    deploy, EXERCISE_STATE,
+    deploy,
+    EXERCISE_STATE,
     loadCompiler,
     setExerciseError,
     setExerciseUpdate,
     testContracts
-} from '../actions';
+} from '../actions/exercise';
+import {postUrl} from "../lib/helpers";
 
-const exercises = [
-    takeEvery(ACTIONS.RUN_EXERCISE, workerExecuteExercise)
-];
-
-export default exercises;
+export default [takeEvery(ACTIONS.RUN_EXERCISE, workerExecuteExercise)];
 
 const exerciseDeployedAction = (actionCodeId, target) =>
     target.codeId === actionCodeId && target.type === ACTIONS.DEPLOY_CONTRACTS_SUCCESS;
@@ -36,7 +34,6 @@ function* workerExecuteExercise(action) {
         yield put(setExerciseUpdate(action.codeId, "Loading compiler"));
         yield put(loadCompiler(action.compilerVersion));
         const compilerAction = yield take(target => compilerLoaded(action.compilerVersion, target));
-        console.log('Compiler loaded.');
 
         yield put(setExerciseUpdate(action.codeId, "Checking wallet access", EXERCISE_STATE.AUTHORIZING));
         yield put(checkWeb3Account());
@@ -57,7 +54,6 @@ function* workerExecuteExercise(action) {
         if (compilationResultAction.type === ACTIONS.COMPILE_FAILURE) {
             return console.log("Compilation failed. Cancel exercise now.");
         }
-        console.log('Exercise compiled');
 
         yield put(deploy(action.codeId, compilationResultAction.code.contracts));
         const deploymentResultAction = yield take([
@@ -67,7 +63,6 @@ function* workerExecuteExercise(action) {
         if (deploymentResultAction.type === ACTIONS.DEPLOY_CONTRACTS_FAILURE) {
             return console.log("Deployment failed. Cancel exercise now.");
         }
-        console.log("Exercise deployed");
 
         yield put(testContracts(action.codeId, action.validation, deploymentResultAction.addresses));
         const testResultAction = yield take([
@@ -77,10 +72,25 @@ function* workerExecuteExercise(action) {
         if (testResultAction.type === ACTIONS.TEST_CONTRACT_FAILURE) {
             return console.log("Tests of exercise failed.");
         }
-        console.log("Exercise completed");
+
+        yield call(postExerciseResult, action.codeId);
 
     } catch (error) {
         console.log('Error in workerExecuteExercise', action.codeId, error);
-        yield put(setExerciseError(action.codeId, error));
+        yield put(setExerciseError(action.codeId, error.message || error));
+    }
+}
+
+async function postExerciseResult(exerciseId) {
+    try {
+        const url = `/api/exercises/${exerciseId}`;
+        await postUrl(url, {});
+    } catch (error) {
+        if (error.response && error.response.status === 401) {
+            console.log('You are not logged in. Your exercise success is not stored in your profile.');
+            console.log('If you want to have full history of your progress, log in and submit the exercise again.');
+            return;
+        }
+        throw(new Error(`Failed to save user progress: ${error.response.data}`));
     }
 }

@@ -1,8 +1,9 @@
 import React from 'react';
 import CodeEditor from "../CodeEditor";
-import {EXERCISE_STATE, resetExerciseErrorCount, runExercise} from "../../../actions";
+import {EXERCISE_STATE} from "../../../actions/exercise";
 import {connect} from "react-redux";
 import ContentArray from "../ContentArray";
+import {resetExerciseErrorCount, runExercise} from "../../../actions/exercise";
 
 const COMPILER_VERSION = 'soljson-v0.4.24+commit.e67f0147.js';
 
@@ -65,9 +66,6 @@ class ExerciseElement extends React.Component {
     }
 
     render() {
-        if (this.props.exercise) {
-            console.log('errorCount', this.props.exercise.errorCount);
-        }
         if (this.props.content && this.props.content.length > 0) {
             return (
                 <div className='hero mb30'>
