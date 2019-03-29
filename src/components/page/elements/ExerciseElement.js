@@ -1,9 +1,8 @@
 import React from 'react';
 import CodeEditor from "../CodeEditor";
-import {EXERCISE_STATE} from "../../../actions/exercise";
+import {EXERCISE_STATE, resetExerciseErrorCount, runExercise} from "../../../actions/exercise";
 import {connect} from "react-redux";
 import ContentArray from "../ContentArray";
-import {resetExerciseErrorCount, runExercise} from "../../../actions/exercise";
 
 const COMPILER_VERSION = 'soljson-v0.4.24+commit.e67f0147.js';
 
@@ -70,9 +69,7 @@ class ExerciseElement extends React.Component {
             return (
                 <div className='hero mb30'>
                     <div className='container'>
-                        <p className='is-5 has-background-link has-text-white has-text-left has-text-weight-bold is-marginless'>
-                            {this.props.content.title || "Exercise"}
-                        </p>
+                        {this.getTitle()}
                         {this.getProgress()}
                     </div>
                     <div className='container'>
@@ -88,6 +85,13 @@ class ExerciseElement extends React.Component {
         }
     }
 
+    getTitle() {
+        const title = this.props.content[0].title;
+        return (<p className='is-5 has-background-link has-text-white has-text-left has-text-weight-bold is-marginless'>
+            {title === "Exercise" ? '' : "Exercise: "}{title}
+        </p>)
+    }
+
     getDescription() {
         return (<div className='has-text-left has-background-grey-lighter'>
             <ContentArray content={this.props.content[0].description}/>
@@ -95,11 +99,7 @@ class ExerciseElement extends React.Component {
     }
 
     getShowSolutionButton() {
-        if (this.props.exercise) {
-            console.log(this.props.exercise.errorCount);
-        }
         if (this.props.exercise && this.props.exercise.errorCount >= 2) {
-
             return (<div className="has-text-left has-background-warning">
                 <button className="button is-small is-fullwidth is-warning" onClick={this.showSolutionClicked}>
                     Show Solution
