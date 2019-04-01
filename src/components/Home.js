@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import Search from './Search'
 import TitleHeader from './layout/TitleHeader'
 import workerImg from '../assets/img/worker.svg'
+import blockchainBasicsImg from '../assets/img/undraw_deliveries_131a.svg'
+import smartContractImg from '../assets/img/undraw_operating_system_4lr6.svg'
 
 export default function Home() {
   return (
@@ -41,7 +43,7 @@ export default function Home() {
           <div className="container">
             <div className="columns is-vcentered">
               <div className="column" style={{ padding: '1rem' }}>
-                <img className={'image image-box border-shadow'} src={workerImg} height={200} />
+                <img className={'image image-box border-shadow'} src={blockchainBasicsImg} height={200} />
               </div>
               <div className="column feature-box">
                 <h1 className={'subtitle'}>Blockchain basics</h1>
@@ -88,7 +90,7 @@ export default function Home() {
                 </Link>
               </div>
               <div className="column" style={{ padding: '1rem' }}>
-                <img className={'image image-box border-shadow'} src={workerImg} height={200} />
+                <img className={'image image-box border-shadow'} src={smartContractImg} height={200} />
               </div>
             </div>
           </div>
