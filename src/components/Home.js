@@ -36,6 +36,64 @@ export default function Home() {
           </div>
         </div>
       </section>
+      <div className={'container'}>
+        <section className="section">
+          <div className="container">
+            <div className="columns is-vcentered">
+              <div className="column" style={{ padding: '1rem' }}>
+                <img className={'image image-box border-shadow'} src={workerImg} height={200} />
+              </div>
+              <div className="column feature-box">
+                <h1 className={'subtitle'}>Blockchain basics</h1>
+                <p className={'is-3 text'}>
+                  Introduce you to blockchain theory. You will learn cryptography, some governance, ...
+                </p>
+                <br />
+                <Link className="button is-info" to={'/start'}>
+                  Start Learning
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div className={'container has-background-color-darker'}>
+        <section className="section">
+          <div className="container">
+            <div className="columns is-vcentered">
+              <div className="column feature-box">
+                <h1 className={'title'}>Smart contracts</h1>
+                <p className={'is-3 text'}>
+                  Smart contracts are application that can run in a decentralized manner and modify the state of the
+                  underlying blockchain. In this lesson, you shall learn.
+                  <div>
+                    <Link className={'is-link'} to={'/start'}>
+                      Functions
+                    </Link>
+                  </div>
+                  <div>
+                    <Link className={'is-link'} to={'/start'}>
+                      Payments
+                    </Link>
+                  </div><div>
+                    <Link className={'is-link'} to={'/start'}>
+                      More
+                    </Link>
+                  </div>
+                </p>
+                <br />
+                <Link className="button is-info" to={'/start'}>
+                  Start Learning
+                </Link>
+              </div>
+              <div className="column" style={{ padding: '1rem' }}>
+                <img className={'image image-box border-shadow'} src={workerImg} height={200} />
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
       <Search />
     </div>
   )

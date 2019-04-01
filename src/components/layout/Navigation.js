@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, Link } from 'react-router-dom'
 import { NavHashLink } from 'react-router-hash-link'
 import LoadingIndicator from './LoadingIndicator'
 import { connect } from 'react-redux'
@@ -25,7 +25,9 @@ class Navigation extends React.Component {
     return (
       <nav className={'navbar is-fixed-top is-transparent'}>
         <div className={'navbar-brand'}>
-          <img src={brandLogo} />
+          <Link to={'/'}>
+            <img className={'image'} src={brandLogo} />
+          </Link>
         </div>
         <div className={'navbar-end'}>
           <LoadingIndicator />

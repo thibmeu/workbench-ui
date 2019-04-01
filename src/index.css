@@ -91,11 +91,11 @@ code {
     font-family: 'Sniglet', cursive;
 }
 
-is-extra-bold {
+.is-extra-bold {
     font-weight: 800;
 }
 
-is-regular {
+.is-regular {
     font-weight: 400;
 }
 
@@ -171,4 +171,27 @@ is-regular {
 
 .is-2 {
     font-size: 1.4rem;
+}
+
+.image-box {
+    border: none;
+    padding: 4rem;
+    text-align: center;
+    margin: auto;
+}
+
+.border-shadow {
+    box-shadow: 0 8px 33px 0 rgba(0,0,0,.07);
+    border-radius: 8px;
+    background: #fff;
+}
+
+.feature-box {
+    margin: 4rem;
+    align-self: center;
+    color: #A9ABAC;
+}
+
+.has-background-color-darker {
+    background-color: #EFF4F7;
 }
