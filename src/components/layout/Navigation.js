@@ -31,19 +31,8 @@ class Navigation extends React.Component {
         </div>
         <div className={'navbar-end'}>
           <LoadingIndicator />
-          <NavLink
-            className={'navbar-item has-text-white'}
-            activeClassName={'is-active'}
-            to={'/pages/0introduction'}
-          >
-            Introduction
-          </NavLink>
-          <NavHashLink
-            className={'navbar-item has-text-white'}
-            activeClassName={'is-active'}
-            to={'/#advanced'}
-          >
-            Advanced Search
+          <NavHashLink className={'navbar-item has-text-white'} activeClassName={'is-active'} to={'/#advanced'}>
+            <i className="icon fas fa-search" />
           </NavHashLink>
           {this.getLoginOrProfileNav()}
         </div>
@@ -55,29 +44,17 @@ class Navigation extends React.Component {
     if (this.props.user.authenticated) {
       return (
         <div>
-          <NavLink
-            className={'navbar-item has-text-white'}
-            activeClassName={'is-active'}
-            to={'/profile'}
-          >
+          <NavLink className={'navbar-item has-text-white'} activeClassName={'is-active'} to={'/profile'}>
             {this.props.user.displayName}
           </NavLink>
-          <NavLink
-            className={'navbar-item has-text-white'}
-            activeClassName={'is-active'}
-            to={'/logout'}
-          >
+          <NavLink className={'navbar-item has-text-white'} activeClassName={'is-active'} to={'/logout'}>
             Logout
           </NavLink>
         </div>
       )
     } else {
       return (
-        <NavLink
-          className={'navbar-item has-text-white'}
-          activeClassName={'is-active'}
-          to={'/login'}
-        >
+        <NavLink className={'navbar-item has-text-white'} activeClassName={'is-active'} to={'/login'}>
           Login
         </NavLink>
       )

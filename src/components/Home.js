@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Search from './Search'
-import TitleHeader from './layout/TitleHeader'
 import workerImg from '../assets/img/worker.svg'
 import blockchainBasicsImg from '../assets/img/undraw_deliveries_131a.svg'
 import smartContractImg from '../assets/img/undraw_operating_system_4lr6.svg'
@@ -10,7 +9,6 @@ export default function Home() {
   return (
     <div>
       <section className="hero is-light is-fullheight hero-header-component">
-        {/* <TitleHeader/> */}
         <div className="hero-body has-text-white">
           <div className="container has-text-centered">
             <img src={workerImg} className={'image landing-page-image'} />
@@ -46,14 +44,20 @@ export default function Home() {
                 <img className={'image image-box border-shadow'} src={blockchainBasicsImg} height={200} />
               </div>
               <div className="column feature-box">
-                <h1 className={'subtitle'}>Blockchain basics</h1>
-                <p className={'is-3 text'}>
-                  Introduce you to blockchain theory. You will learn cryptography, some governance, ...
-                </p>
-                <br />
-                <Link className="button is-info" to={'/start'}>
-                  Start Learning
-                </Link>
+                <h1 className={'title'}>Blockchain basics</h1>
+                <aside className="menu">
+                  <ul className="menu-list">
+                    <li>
+                      <a className="text is-2">Cryptography</a>
+                    </li>
+                    <li>
+                      <a className="text is-2">Blockchain.s</a>
+                    </li>
+                    <li>
+                      <a className="text is-2 is-active">Start Learning</a>
+                    </li>
+                  </ul>
+                </aside>
               </div>
             </div>
           </div>
@@ -66,28 +70,19 @@ export default function Home() {
             <div className="columns is-vcentered">
               <div className="column feature-box">
                 <h1 className={'title'}>Smart contracts</h1>
-                <p className={'is-3 text'}>
-                  Smart contracts are application that can run in a decentralized manner and modify the state of the
-                  underlying blockchain. In this lesson, you shall learn.
-                  <div>
-                    <Link className={'is-link'} to={'/start'}>
-                      Functions
-                    </Link>
-                  </div>
-                  <div>
-                    <Link className={'is-link'} to={'/start'}>
-                      Payments
-                    </Link>
-                  </div><div>
-                    <Link className={'is-link'} to={'/start'}>
-                      More
-                    </Link>
-                  </div>
-                </p>
-                <br />
-                <Link className="button is-info" to={'/start'}>
-                  Start Learning
-                </Link>
+                <aside className="menu">
+                  <ul className="menu-list">
+                    <li>
+                      <a className="text is-2">Functions</a>
+                    </li>
+                    <li>
+                      <a className="text is-2">Payments</a>
+                    </li>
+                    <li>
+                      <a className="text is-2 is-active">Start Learning</a>
+                    </li>
+                  </ul>
+                </aside>
               </div>
               <div className="column" style={{ padding: '1rem' }}>
                 <img className={'image image-box border-shadow'} src={smartContractImg} height={200} />
