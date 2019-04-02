@@ -12,6 +12,7 @@ import Footer from './layout/Footer'
 import Profile from './user/Profile'
 import ProfileEdit from './user/ProfileEdit'
 import Playground from './Playground'
+import SearchPage from './search/SearchPage'
 
 class App extends React.Component {
   componentDidMount() {
@@ -24,7 +25,7 @@ class App extends React.Component {
         <div>
           <Navigation />
           <Route path={'/demo'} component={Playground} />
-          <Route exact path={'/?advanced'} component={Home} />
+          <Route exact path={'/search'} component={SearchPage} />
           <Route exact path={'/'} component={Home} />
           <Route path={'/login/:app?'} component={Login} />
           <Route path={'/logout'} component={Logout} />

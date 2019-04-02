@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Search from './Search'
 import workerImg from '../assets/img/worker.svg'
 import blockchainBasicsImg from '../assets/img/undraw_deliveries_131a.svg'
 import smartContractImg from '../assets/img/undraw_operating_system_4lr6.svg'
@@ -26,7 +25,7 @@ export default function Home() {
                 </span>
                 <span>Beginner</span>
               </Link>
-              <Link className={'button is-dark is-big'} to={'start'}>
+              <Link className={'button is-dark is-big'} to={'/search'}>
                 <span className="icon">
                   <i className="fas fa-terminal" />
                 </span>
@@ -91,8 +90,6 @@ export default function Home() {
           </div>
         </section>
       </div>
-      {/* TODO: has to be moved to topbar */}
-      {/* <Search /> */}
     </div>
   )
 }

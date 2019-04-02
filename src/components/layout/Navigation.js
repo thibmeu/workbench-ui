@@ -31,7 +31,7 @@ class Navigation extends React.Component {
         </div>
         <div className={'navbar-end'}>
           <LoadingIndicator />
-          <NavHashLink className={'navbar-item has-text-white'} activeClassName={'is-active'} to={'/#advanced'}>
+          <NavHashLink className={'navbar-item has-text-white'} activeClassName={'is-active'} to={'/search'}>
             <i className="icon fas fa-search" />
           </NavHashLink>
           {this.getLoginOrProfileNav()}
