@@ -51,7 +51,7 @@ export default function Home() {
                       <a className="text is-2">Cryptography</a>
                     </li>
                     <li>
-                      <a className="text is-2">Blockchain.s</a>
+                      <a className="text is-2">Bitcoin</a>
                     </li>
                     <li>
                       <a className="text is-2 is-active">Start Learning</a>
@@ -91,7 +91,8 @@ export default function Home() {
           </div>
         </section>
       </div>
-      <Search />
+      {/* TODO: has to be moved to topbar */}
+      {/* <Search /> */}
     </div>
   )
 }

@@ -58,6 +58,10 @@ code {
     margin-left: 10px;
 }
 
+.ml2 {
+    margin-left: 2rem;
+}
+
 .is-parent .tile:hover {
     background-color: azure;
 }
@@ -80,7 +84,8 @@ code {
 }
 
 .footer {
-    padding-bottom: 3rem;
+    padding: 2rem 1.5rem;
+    margin-top: 3rem;
 }
 
 .hero-header-component {
