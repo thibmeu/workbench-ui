@@ -62,17 +62,13 @@ class Navigation extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    user: state.appState.user,
-  }
-}
+const mapStateToProps = state => ({
+  user: state.appState.user,
+})
 
-const mapDispatchToProps = dispatch => {
-  return {
-    loadProfile: () => dispatch(loadUserProfile()),
-  }
-}
+const mapDispatchToProps = dispatch => ({
+  loadProfile: () => dispatch(loadUserProfile()),
+})
 
 export default connect(
   mapStateToProps,
