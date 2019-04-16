@@ -67,14 +67,17 @@ class Navigation extends React.Component {
           className={`navbar-item ${this.state.isTop ? 'has-text-white' : ''}`}
           activeClassName={'is-active'}
         >
-          <i className="fas fa-search" />
+          <i className={'fas fa-search'} />
         </a>
       )
     } else {
       return (
         <div className={`navbar-item ${this.state.isTop ? 'has-text-white' : ''}`}>
-          <div className={'control is-loading '}>
-            <input className={'input'} type={'text'} placeholder={'Loading input'} />
+          <div className={'control is-loading has-icons-left'}>
+            <input className={'input'} type={'text'} placeholder={'Search'} />
+            <span className={'icon is-small is-left'}>
+              <i className={'fas fa-search'} />
+            </span>
           </div>
         </div>
       )
