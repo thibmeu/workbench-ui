@@ -33,7 +33,7 @@ class App extends React.Component {
           <Route exact path={'/profile/edit'} component={ProfileEdit} />
           <Route path={'/pages/:category/:page'} component={Page} />
           <Switch>
-            <Redirect from={'/start'} to={'/pages/0introduction'} />
+            <Redirect from={'/start'} to={'/pages/0Introduction'} />
             <Route exact path={'/pages/:category'} component={Pages} />
           </Switch>
           <Footer />
