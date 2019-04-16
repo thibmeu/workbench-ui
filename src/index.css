@@ -240,3 +240,7 @@ code {
 .content {
     padding: 0 5rem;
 }
+
+.is-uppercase {
+    text-transform: uppercase;
+}

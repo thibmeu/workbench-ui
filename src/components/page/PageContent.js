@@ -42,120 +42,111 @@ class PageContent extends React.Component {
           </div>
         </div>
       )
-    } else {
-      return (
-        <div>
-          <h1 className="title has-text-centered">loading..</h1>
-          <p className={'icon loading has-text-info'}>
-            <i className={'fas fa-spinner fa-spin'} />
-          </p>
-        </div>
-      )
     }
+    return (
+      <div>
+        <h1 className="title has-text-centered">loading..</h1>
+        <p className={'icon loading has-text-info'}>
+          <i className={'fas fa-spinner fa-spin'} />
+        </p>
+      </div>
+    )
   }
 
   getPageContentJSX() {
     if (this.props.page.content) {
       if (typeof this.props.page.content === 'string') {
         return <ReactMarkdown source={this.props.page.content} />
-      } else {
-        return (
-          <div className="content-array mb30 has-text-left">
-            <ContentArray content={this.props.page.content} />
-          </div>
-        )
       }
-    } else {
-      if (this.props.page.error) {
-        return <p className={'has-text-danger has-text-weight-bold'}>{this.props.page.error}</p>
-      } else {
-        return (
-          <p className={'has-text-centered'}>
-            <span className={'icon loading has-text-info has-text-centered is-large'}>
-              <i className={'fas fa-spinner fa-spin'} />
-            </span>
-            <span>Loading content ...</span>
-          </p>
-        )
-      }
+      return (
+        <div className="content-array mb30 has-text-left">
+          <ContentArray content={this.props.page.content} />
+        </div>
+      )
     }
+    if (this.props.page.error) {
+      return <p className={'has-text-danger has-text-weight-bold'}>{this.props.page.error}</p>
+    }
+    return (
+      <p className={'has-text-centered'}>
+        <span className={'icon loading has-text-info has-text-centered is-large'}>
+          <i className={'fas fa-spinner fa-spin'} />
+        </span>
+        <span>Loading content ...</span>
+      </p>
+    )
   }
 
   getNextPageJSX() {
-    const nextIcon = (
-      <p className={'icon has-text-info'}>
-        <i className={'fas fa-chevron-circle-right'} />
-      </p>
-    )
     const nextPage = this.props.page ? this.getAdjacentCategoryPage(this.props.page.next, 'next') : null
+
+    let url
+    let text
     if (!nextPage || !nextPage.categories) {
-      return <Link to={'/#advanced'}>Choose next Page {nextIcon}</Link>
+      // Search page
+      url = '/search'
+      text = 'Choose next page'
+    } else if (
+      nextPage.categories &&
+      nextPage.categories.map(c => c.toLowerCase()).includes(this.props.category.toLowerCase())
+    ) {
+      // Next Page
+      url = buildPageUrl(this.props.category, nextPage.title)
+      text = nextPage.title
+    } else if (nextPage.url.endsWith('/')) {
+      // Next Chapter
+      url = buildCategoryUrl(nextPage.categories[0])
+      text = nextPage.title
     } else {
-      const sameCategory =
-        nextPage.categories && nextPage.categories.map(c => c.toLowerCase()).includes(this.props.category.toLowerCase())
-      if (sameCategory) {
-        return (
-          <Link to={buildPageUrl(this.props.category, nextPage.title)}>
-            {nextPage.title} {nextIcon}
-          </Link>
-        )
-      } else {
-        if (nextPage.url.endsWith('/')) {
-          return (
-            <Link to={buildCategoryUrl(nextPage.categories[0])} className={'button is-info is-large'}>
-              Next Chapter: {nextPage.title}
-            </Link>
-          )
-        } else {
-          return (
-            <Link to={buildPageUrl(nextPage.categories[0], nextPage.title)} className={'button is-info is-large'}>
-              Next Chapter: {nextPage.title}
-            </Link>
-          )
-        }
-      }
+      // Next Chapter
+      url = buildPageUrl(nextPage.categories[0], nextPage.title)
+      text = nextPage.title
     }
+
+    return (
+      <Link to={url} className={'button is-info is-outlined is-uppercase'}>
+        <span>{text}</span>
+        <div className={'icon'}>
+          <i className={'fas fa-chevron-right'} />
+        </div>
+      </Link>
+    )
   }
 
   getPreviousPageJSX() {
-    const previousIcon = (
-      <p className={'icon has-text-info'}>
-        <i className={'fas fa-chevron-circle-left'} />
-      </p>
-    )
     const previousPage = this.props.page ? this.getAdjacentCategoryPage(this.props.page.previous, 'prev') : null
+
+    if (!previousPage) {
+      return null
+    }
+
     const sameCategory =
       previousPage &&
       previousPage.categories &&
       previousPage.categories.map(c => c.toLowerCase()).includes(this.props.category.toLowerCase())
-    if (previousPage) {
-      if (sameCategory) {
-        if (previousPage.url.endsWith('/')) {
-          return (
-            <Link to={buildCategoryUrl(this.props.category)}>
-              {previousIcon} {previousPage.title} (Chapter Overview)
-            </Link>
-          )
-        } else {
-          return (
-            <Link to={buildPageUrl(this.props.category, previousPage.title)}>
-              {previousIcon} {previousPage.title}
-            </Link>
-          )
-        }
+
+    let url
+    if (sameCategory) {
+      if (previousPage.url.endsWith('/')) {
+        // Chapter overview
+        url = buildCategoryUrl(this.props.category)
       } else {
-        return (
-          <Link to={buildPageUrl(previousPage.categories[0], previousPage.title)}>
-            {previousIcon} {previousPage.title} (Previous Chapter)
-          </Link>
-        )
+        // Regular page
+        url = buildPageUrl(this.props.category, previousPage.title)
       }
+    } else {
+      // Previous Chapter
+      url = buildPageUrl(previousPage.categories[0], previousPage.title)
     }
-    return previousPage ? (
-      <Link to={buildPageUrl(this.props.category, previousPage.title)}>
-        {previousIcon} {previousPage.title}
+
+    return (
+      <Link to={url} className={'button is-info is-outlined is-uppercase'}>
+        <div className={'icon'}>
+          <i className={'fas fa-chevron-left'} />
+        </div>
+        <span>{previousPage.title}</span>
       </Link>
-    ) : null
+    )
   }
 
   getAdjacentCategoryPage(nextPreviousContainer, info) {
@@ -167,10 +158,8 @@ class PageContent extends React.Component {
         return this.props.pages.find(
           page => page.url.toLowerCase() === nextPreviousContainer[categoryIndex].toLowerCase(),
         )
-      } else {
-        if (info === 'next') {
-          console.log('-1 next', this.props.page.categories, this.props.category)
-        }
+      } else if (info === 'next') {
+        console.log('-1 next', this.props.page.categories, this.props.category)
       }
     }
   }
