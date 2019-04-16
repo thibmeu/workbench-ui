@@ -153,6 +153,16 @@ code {
     background-color: transparent;
 }
 
+.has-shadow-bottom {
+    box-shadow: 0 0 8px 1px rgba(0,0,0,.2);
+}
+
+.short-background-color-transition {
+    -webkit-transition: background-color 150ms linear;
+    -ms-transition: background-color 150ms linear;
+    transition: background-color 150ms linear;
+}
+
 .navbar-brand {
     display: block;
     padding: 0.7rem 0.75rem;
