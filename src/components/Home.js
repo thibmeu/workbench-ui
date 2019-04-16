@@ -45,13 +45,13 @@ export default function Home() {
                 <aside className="menu">
                   <ul className="menu-list">
                     <li>
-                      <div className="text is-2">Cryptography</div>
+                      <a className="text is-2">Cryptography</a>
                     </li>
                     <li>
                       <div className="text is-2">Bitcoin</div>
                     </li>
                     <li>
-                      <div className="text is-2 is-active">Start Learning</div>
+                      <a className="text is-2 is-active">Start Learning</a>
                     </li>
                   </ul>
                 </aside>
@@ -70,13 +70,13 @@ export default function Home() {
                 <aside className="menu">
                   <ul className="menu-list">
                     <li>
-                      <div className="text is-2">Functions</div>
+                      <a className="text is-2">Functions</a>
                     </li>
                     <li>
-                      <div className="text is-2">Payments</div>
+                      <a className="text is-2">Payments</a>
                     </li>
                     <li>
-                      <div className="text is-2 is-active">Start Learning</div>
+                      <a className="text is-2 is-active">Start Learning</a>
                     </li>
                   </ul>
                 </aside>
