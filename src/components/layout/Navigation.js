@@ -47,7 +47,7 @@ class Navigation extends React.Component {
       >
         <div className={'navbar-brand'}>
           <Link to={'/'}>
-            <img className={'image'} src={this.getHeaderLogo()} />
+            <img className={'image'} src={this.getHeaderLogo()} alt={'Logo'} />
           </Link>
         </div>
         <div className={'navbar-end'}>
@@ -62,13 +62,13 @@ class Navigation extends React.Component {
   getSearchComponent() {
     if (!this.state.isSearchActive) {
       return (
-        <a
+        <div
           onClick={() => this.setSearchActive()}
           className={`navbar-item ${this.state.isTop ? 'has-text-white' : ''}`}
-          activeClassName={'is-active'}
+          // activeClassName={'is-active'}
         >
           <i className={'fas fa-search'} />
-        </a>
+        </div>
       )
     } else {
       return (
@@ -97,7 +97,7 @@ class Navigation extends React.Component {
           </NavLink>
           <NavLink
             className={`navbar-item ${this.state.isTop ? 'has-text-white' : ''}`}
-            activeClassName={'is-active'}
+            // activeClassName={'is-active'}
             to={'/logout'}
           >
             Logout
@@ -108,7 +108,7 @@ class Navigation extends React.Component {
       return (
         <NavLink
           className={`navbar-item ${this.state.isTop ? 'has-text-white' : ''}`}
-          activeClassName={'is-active'}
+          // activeClassName={'is-active'}
           to={'/login'}
         >
           Login

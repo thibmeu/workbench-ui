@@ -10,10 +10,8 @@ export default function Home() {
       <section className="hero is-light is-fullheight hero-header-component">
         <div className="hero-body has-text-white">
           <div className="container has-text-centered">
-            <img src={workerImg} className={'image landing-page-image'} />
-            <h1 className={'title is-1 has-text-white is-cursive is-extra-bold'}>
-              Forge Your Blockchain Skills
-            </h1>
+            <img src={workerImg} className={'image landing-page-image'} alt={''} />
+            <h1 className={'title is-1 has-text-white is-cursive is-extra-bold'}>Forge Your Blockchain Skills</h1>
             <h2 className={'is-2 has-text-white'}>
               Blockchain theory curated by Universities, Interactive online IDE, No certification fee
             </h2>
@@ -40,20 +38,20 @@ export default function Home() {
           <div className="container">
             <div className="columns is-vcentered">
               <div className="column" style={{ padding: '1rem' }}>
-                <img className={'image image-box border-shadow'} src={blockchainBasicsImg} height={200} />
+                <img className={'image image-box border-shadow'} src={blockchainBasicsImg} height={200} alt={''} />
               </div>
               <div className="column feature-box">
                 <h1 className={'title'}>Blockchain basics</h1>
                 <aside className="menu">
                   <ul className="menu-list">
                     <li>
-                      <a className="text is-2">Cryptography</a>
+                      <div className="text is-2">Cryptography</div>
                     </li>
                     <li>
-                      <a className="text is-2">Bitcoin</a>
+                      <div className="text is-2">Bitcoin</div>
                     </li>
                     <li>
-                      <a className="text is-2 is-active">Start Learning</a>
+                      <div className="text is-2 is-active">Start Learning</div>
                     </li>
                   </ul>
                 </aside>
@@ -72,19 +70,19 @@ export default function Home() {
                 <aside className="menu">
                   <ul className="menu-list">
                     <li>
-                      <a className="text is-2">Functions</a>
+                      <div className="text is-2">Functions</div>
                     </li>
                     <li>
-                      <a className="text is-2">Payments</a>
+                      <div className="text is-2">Payments</div>
                     </li>
                     <li>
-                      <a className="text is-2 is-active">Start Learning</a>
+                      <div className="text is-2 is-active">Start Learning</div>
                     </li>
                   </ul>
                 </aside>
               </div>
               <div className="column" style={{ padding: '1rem' }}>
-                <img className={'image image-box border-shadow'} src={smartContractImg} height={200} />
+                <img className={'image image-box border-shadow'} src={smartContractImg} height={200} alt={''} />
               </div>
             </div>
           </div>

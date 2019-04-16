@@ -6,7 +6,7 @@ export default function Footer() {
   return (
     <footer className={'footer has-background-info level'}>
       <Link to={'/'}>
-        <img className={'image'} src={brandLogo} />
+        <img className={'image'} src={brandLogo} alt={'Logo'} />
       </Link>
       <div className={'level has-text-centered is-3'}>
         <div className="level-item">

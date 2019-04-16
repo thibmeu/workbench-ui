@@ -79,9 +79,9 @@ class ExerciseElement extends React.Component {
           <div className={'exercise-header'}>
             <p className={'subtitle has-text-white has-text-weight-bold is-marginless'}>
               {this.props.content.title || 'Exercise'}
-              <a onClick={this.handleSubmit} className={'button is-pulled-right is-right has-text-left'}>
+              <div onClick={this.handleSubmit} className={'button is-pulled-right is-right has-text-left'}>
                 Submit
-              </a>
+              </div>
             </p>
             {this.getProgress()}
           </div>
