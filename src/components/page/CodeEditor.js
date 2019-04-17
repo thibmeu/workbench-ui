@@ -39,6 +39,7 @@ class CodeEditor extends React.Component {
         highlightGutterLine: false,
         maxLines: 1000,
         showPrintMargin: false,
+        padding: '1rem',
       }
     }
 
