@@ -1,6 +1,7 @@
 import React from 'react'
 import AceEditor from 'react-ace'
 
+import 'brace/theme/dracula'
 import 'brace/theme/tomorrow'
 import 'react-ace/dist/react-ace'
 import 'brace/mode/javascript'
@@ -22,26 +23,31 @@ class CodeEditor extends React.Component {
 
   render() {
     let highlightActiveLine = true
-    let readOnly = false
-    const setOptions = {}
+    let readOnly = !!this.props.readOnly
+    let theme = 'tomorrow'
+    let setOptions = {
+      fontSize: '1rem',
+    }
     if (this.props.displaySimple) {
       readOnly = true
+      theme = 'dracula'
       highlightActiveLine = false
-      setOptions['showLineNumbers'] = false
-      setOptions['showFoldWidgets'] = false
-      setOptions['showGutter'] = false
-      setOptions['maxLines'] = 1000
-      setOptions['showPrintMargin'] = false
-    }
-    if (this.props.readOnly) {
-      readOnly = true
+      setOptions = {
+        ...setOptions,
+        showFoldWidgets: false,
+        showGutter: true,
+        highlightGutterLine: false,
+        maxLines: 1000,
+        showPrintMargin: false,
+        padding: '1rem',
+      }
     }
 
     return (
       <AceEditor
         className={'is-fullwidth'}
         mode={this.props.language ? this.props.language : 'solidity'}
-        theme="tomorrow"
+        theme={theme}
         onChange={this.handleChange}
         name={`codeeditor-${this.props.id}`}
         readOnly={readOnly}
