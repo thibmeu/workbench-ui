@@ -45,13 +45,19 @@ export default function Home() {
                 <aside className="menu">
                   <ul className="menu-list">
                     <li>
-                      <a className="text is-2">Cryptography</a>
+                      <a href={''} className="text is-2">
+                        Cryptography
+                      </a>
                     </li>
                     <li>
-                      <div className="text is-2">Bitcoin</div>
+                      <a href={''} className="text is-2">
+                        Bitcoin
+                      </a>
                     </li>
                     <li>
-                      <a className="text is-2 is-active">Start Learning</a>
+                      <a href={''} className="text is-2 is-active">
+                        Start Learning
+                      </a>
                     </li>
                   </ul>
                 </aside>
@@ -70,13 +76,19 @@ export default function Home() {
                 <aside className="menu">
                   <ul className="menu-list">
                     <li>
-                      <a className="text is-2">Functions</a>
+                      <a href={''} className="text is-2">
+                        Functions
+                      </a>
                     </li>
                     <li>
-                      <a className="text is-2">Payments</a>
+                      <a href={''} className="text is-2">
+                        Payments
+                      </a>
                     </li>
                     <li>
-                      <a className="text is-2 is-active">Start Learning</a>
+                      <a href={''} className="text is-2 is-active">
+                        Start Learning
+                      </a>
                     </li>
                   </ul>
                 </aside>

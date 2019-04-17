@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { buildCategoryUrl, buildPageUrl } from '../../lib/helpers'
+import { buildCategoryUrl, buildPageUrl, firstCategoryNameOrUnknown, urlify } from '../../lib/helpers'
 import { loadPageContent } from '../../actions/pages'
 import ContentArray from './ContentArray'
 
@@ -123,7 +123,7 @@ class PageContent extends React.Component {
     const sameCategory =
       previousPage &&
       previousPage.categories &&
-      previousPage.categories.map(c => c.toLowerCase()).includes(this.props.category.toLowerCase())
+      previousPage.categories.map(c => urlify(c.toLowerCase())).includes(this.props.category.toLowerCase())
 
     let url
     if (sameCategory) {
@@ -136,7 +136,7 @@ class PageContent extends React.Component {
       }
     } else {
       // Previous Chapter
-      url = buildPageUrl(previousPage.categories[0], previousPage.title)
+      url = buildPageUrl(firstCategoryNameOrUnknown(previousPage.categories), previousPage.title)
     }
 
     return (
@@ -152,7 +152,7 @@ class PageContent extends React.Component {
   getAdjacentCategoryPage(nextPreviousContainer, info) {
     if (nextPreviousContainer) {
       const categoryIndex = this.props.page.categories
-        .map(cat => cat.toLowerCase())
+        .map(cat => urlify(cat.toLowerCase()))
         .indexOf(this.props.category.toLowerCase())
       if (categoryIndex !== -1) {
         return this.props.pages.find(

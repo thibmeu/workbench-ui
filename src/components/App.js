@@ -13,6 +13,7 @@ import Profile from './user/Profile'
 import ProfileEdit from './user/ProfileEdit'
 import Playground from './Playground'
 import SearchPage from './search/SearchPage'
+import Testing from './testing/Testing'
 
 class App extends React.Component {
   componentDidMount() {
