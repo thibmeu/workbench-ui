@@ -46,7 +46,7 @@ export const postUrl = (url, data) => {
 }
 
 export const getAdjacentCategoryPage = (page, category, pages, nextPreviousContainer, info) => {
-  if (nextPreviousContainer) {
+  if (nextPreviousContainer && category) {
     const categoryIndex = page.categories.map(cat => urlify(cat.toLowerCase())).indexOf(category.toLowerCase())
     if (categoryIndex !== -1) {
       return pages.find(
@@ -59,6 +59,7 @@ export const getAdjacentCategoryPage = (page, category, pages, nextPreviousConta
       console.log('-1 next', page.categories, category)
     }
   }
+  return null
 }
 
 export const getPreviousPageData = (page, category, pages) => {
@@ -67,11 +68,12 @@ export const getPreviousPageData = (page, category, pages) => {
   let url
   let text
   if (!previousPage) {
-    url = '/'
-    text = 'Homepage'
-  } else {
-    text = previousPage.title
+    return {
+      url: '/',
+      text: 'Homepage',
+    }
   }
+  text = previousPage.title
 
   const sameCategory =
     previousPage &&

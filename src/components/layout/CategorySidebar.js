@@ -2,7 +2,7 @@ import React from 'react'
 import { withRouter } from 'react-router'
 import connect from 'react-redux/es/connect/connect'
 import { Link } from 'react-router-dom'
-import { urlify } from '../../lib/helpers'
+import { getNextPageData, getPreviousPageData, urlify } from '../../lib/helpers'
 
 class CategorySidebar extends React.Component {
   getStepsForPages(category, pages) {
@@ -28,21 +28,25 @@ class CategorySidebar extends React.Component {
   }
 
   render() {
-    let activeCategoryName = this.props.match.params.category
+    const activeCategoryName = this.props.match.params.category
     const activeCategoryPages = this.props.categories[urlify(activeCategoryName.toLowerCase())]
+
+    const activePage = this.getCurrentPage()
+    const previousUrl = getPreviousPageData(activePage, activeCategoryName, activeCategoryPages).url
+    const nextUrl = getNextPageData(activePage, activeCategoryName, activeCategoryPages).url
 
     return (
       <div className={'category-sidebar border-shadow'}>
         <div className={'sidebar-header is-flex is-stretch has-text-white has-text-centered'}>
-          <div className={'icon has-background-info plr1'}>
+          <Link to={previousUrl} className={'icon has-background-info plr1'}>
             <i className={'fas fa-chevron-left'} />
-          </div>
+          </Link>
           <div className={'is-3 has-text-weight-bold has-flex-grow has-background-info pbt05 plr075'}>
             {activeCategoryName}
           </div>
-          <div className={'icon has-background-info plr1'}>
+          <Link to={nextUrl} className={'icon has-background-info plr1'}>
             <i className={'fas fa-chevron-right'} />
-          </div>
+          </Link>
         </div>
         <aside className="menu">
           <ul className="menu-list pbt5">{this.getStepsForPages(activeCategoryName, activeCategoryPages)}</ul>
@@ -51,10 +55,20 @@ class CategorySidebar extends React.Component {
     )
   }
 
+  getCurrentPage() {
+    let category = this.props.match.params.category
+    const pages = this.props.categories[urlify(category.toLowerCase())]
+
+    if (!pages) {
+      return null
+    }
+    return pages.find(page => page.title.toLowerCase() === this.props.match.params.page.toLowerCase())
+  }
+
   isActivePage(page, isOverview) {
     return (
-      (isOverview && !this.props.match.params.page) ||
-      (this.props.match.params.page && this.props.match.params.page.toLowerCase() === urlify(page.title.toLowerCase()))
+      (isOverview && !this.getCurrentPage()) ||
+      (this.getCurrentPage() && this.getCurrentPage().title.toLowerCase() === urlify(page.title.toLowerCase()))
     )
   }
 }
