@@ -37,14 +37,14 @@ class CategorySidebar extends React.Component {
 
     return (
       <div className={'category-sidebar border-shadow'}>
-        <div className={'sidebar-header is-flex is-stretch has-text-white has-text-centered'}>
-          <Link to={previousUrl} className={'icon has-background-info plr1'}>
+        <div className={'sidebar-header is-flex is-stretch has-text-centered'}>
+          <Link to={previousUrl} className={'icon has-text-white has-background-info plr1'}>
             <i className={'fas fa-chevron-left'} />
           </Link>
-          <div className={'is-3 has-text-weight-bold has-flex-grow has-background-info pbt05 plr075'}>
+          <div className={'is-3 has-text-white has-text-weight-bold has-flex-grow has-background-info pbt05 plr075'}>
             {activeCategoryName}
           </div>
-          <Link to={nextUrl} className={'icon has-background-info plr1'}>
+          <Link to={nextUrl} className={'icon has-text-white has-background-info plr1'}>
             <i className={'fas fa-chevron-right'} />
           </Link>
         </div>
@@ -57,18 +57,17 @@ class CategorySidebar extends React.Component {
 
   getCurrentPage() {
     let category = this.props.match.params.category
-    const pages = this.props.categories[urlify(category.toLowerCase())]
+    const pages = this.props.categories[urlify(category).toLowerCase()]
 
     if (!pages) {
       return null
     }
-    return pages.find(page => page.title.toLowerCase() === this.props.match.params.page.toLowerCase())
+    return pages.find(page => urlify(page.title).toLowerCase() === this.props.match.params.page.toLowerCase())
   }
 
   isActivePage(page, isOverview) {
     return (
-      (isOverview && !this.getCurrentPage()) ||
-      (this.getCurrentPage() && this.getCurrentPage().title.toLowerCase() === urlify(page.title.toLowerCase()))
+      (isOverview && !this.getCurrentPage()) || (this.getCurrentPage() && this.getCurrentPage().title === page.title)
     )
   }
 }
