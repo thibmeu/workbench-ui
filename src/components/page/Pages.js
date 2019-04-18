@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Link, withRouter } from 'react-router-dom'
+import { Link, Redirect, withRouter } from 'react-router-dom'
 import TitleHeader from '../layout/TitleHeader'
 import { getDifficultyColorForTag, urlify } from '../../lib/helpers'
 import CategorySteps from '../layout/CategorySteps'
@@ -78,7 +78,7 @@ class Pages extends React.Component {
 
   getLoadingInfo() {
     if (this.categoriesLoaded()) {
-      return <h1 className="title has-text-centered">Category not found</h1>
+      return <Redirect to={'/404'} />
     } else {
       return (
         <div>
