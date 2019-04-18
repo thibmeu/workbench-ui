@@ -32,11 +32,20 @@ class CategorySidebar extends React.Component {
     const activeCategoryPages = this.props.categories[urlify(activeCategoryName.toLowerCase())]
 
     return (
-      <div className={'category-sidebar'}>
-        <h1 className={'title'}>Smart contracts</h1>
+      <div className={'category-sidebar border-shadow'}>
+        <div className={'sidebar-header is-flex is-stretch has-text-white has-text-centered'}>
+          <div className={'icon has-background-info plr1'}>
+            <i className={'fas fa-chevron-left'} />
+          </div>
+          <div className={'is-3 has-text-weight-bold has-flex-grow has-background-info pbt05 plr075'}>
+            {activeCategoryName}
+          </div>
+          <div className={'icon has-background-info plr1'}>
+            <i className={'fas fa-chevron-right'} />
+          </div>
+        </div>
         <aside className="menu">
-          <p className={'menu-label'}>General</p>
-          <ul className="menu-list">{this.getStepsForPages(activeCategoryName, activeCategoryPages)}</ul>
+          <ul className="menu-list pbt5">{this.getStepsForPages(activeCategoryName, activeCategoryPages)}</ul>
         </aside>
       </div>
     )
