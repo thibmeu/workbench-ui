@@ -43,7 +43,7 @@ class CategorySidebar extends React.Component {
             <i className={'fas fa-chevron-left'} />
           </Link>
           <div className={'is-3 has-text-white has-text-weight-bold has-flex-grow has-background-info pbt05 plr075'}>
-            {activeCategoryName}
+            {activeCategoryName.replace(/_/g, ' ')}
           </div>
           <Link to={nextData.url} className={'icon has-text-white has-background-info plr1'}>
             <i className={'fas fa-chevron-right'} />
@@ -63,6 +63,10 @@ class CategorySidebar extends React.Component {
     if (!pages) {
       return null
     }
+    if (!this.props.match.params.page) {
+      return pages[0]
+    }
+
     return pages.find(page => urlify(page.title).toLowerCase() === this.props.match.params.page.toLowerCase())
   }
 
