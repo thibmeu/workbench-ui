@@ -30,21 +30,22 @@ class CategorySidebar extends React.Component {
   render() {
     const activeCategoryName = this.props.match.params.category
     const activeCategoryPages = this.props.categories[urlify(activeCategoryName.toLowerCase())]
-
     const activePage = this.getCurrentPage()
-    const previousUrl = getPreviousPageData(activePage, activeCategoryName, activeCategoryPages).url
-    const nextUrl = getNextPageData(activePage, activeCategoryName, activeCategoryPages).url
+
+    const pages = Object.values(this.props.categories).reduce((acc, cat) => [...acc, ...cat], [])
+    const previousData = getPreviousPageData(activePage, activeCategoryName, pages)
+    const nextData = getNextPageData(activePage, activeCategoryName, pages)
 
     return (
       <div className={'category-sidebar border-shadow'}>
         <div className={'sidebar-header is-flex is-stretch has-text-centered'}>
-          <Link to={previousUrl} className={'icon has-text-white has-background-info plr1'}>
+          <Link to={previousData.url} className={'icon has-text-white has-background-info plr1'}>
             <i className={'fas fa-chevron-left'} />
           </Link>
           <div className={'is-3 has-text-white has-text-weight-bold has-flex-grow has-background-info pbt05 plr075'}>
             {activeCategoryName}
           </div>
-          <Link to={nextUrl} className={'icon has-text-white has-background-info plr1'}>
+          <Link to={nextData.url} className={'icon has-text-white has-background-info plr1'}>
             <i className={'fas fa-chevron-right'} />
           </Link>
         </div>
