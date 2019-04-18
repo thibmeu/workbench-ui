@@ -55,10 +55,10 @@ class Pages extends React.Component {
       content = this.getCategoryInfo(activeCategoryPages, activeCategoryName)
     }
     return (
-      <section className="hero">
+      <section className={'hero'}>
         <TitleHeader />
-        <div className="hero-body">
-          <div className="container has-text-centered">{content}</div>
+        <div className={'hero-body content'}>
+          <div>{content}</div>
         </div>
       </section>
     )

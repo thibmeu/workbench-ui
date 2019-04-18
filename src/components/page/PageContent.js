@@ -19,8 +19,12 @@ class PageContent extends React.Component {
   loadCurrentPageContent() {
     this.loadPageContent(this.props.page)
     if (this.props.page) {
-      this.loadPageContent(this.getAdjacentCategoryPage(this.props.page.next))
-      this.loadPageContent(this.getAdjacentCategoryPage(this.props.page.previous))
+      this.loadPageContent(
+        getAdjacentCategoryPage(this.props.page, this.props.category, this.props.pages, this.props.page.next),
+      )
+      this.loadPageContent(
+        getAdjacentCategoryPage(this.props.page, this.props.category, this.props.pages, this.props.page.previous),
+      )
     }
   }
 
@@ -78,7 +82,7 @@ class PageContent extends React.Component {
   }
 
   getNextPageJSX() {
-    let { url, text } = this.getNextPageData()
+    let { url, text } = getNextPageData(this.props.page, this.props.category, this.props.pages)
 
     return (
       <Link to={url} className={'button is-info is-outlined is-uppercase'}>
@@ -91,7 +95,7 @@ class PageContent extends React.Component {
   }
 
   getPreviousPageJSX() {
-    const { url, text } = this.getPreviousPageData()
+    const { url, text } = getPreviousPageData(this.props.page, this.props.category, this.props.pages)
 
     return (
       <Link to={url} className={'button is-info is-outlined is-uppercase'}>
@@ -101,18 +105,6 @@ class PageContent extends React.Component {
         <span>{text}</span>
       </Link>
     )
-  }
-
-  getAdjacentCategoryPage(nextPreviousContainer, info) {
-    return getAdjacentCategoryPage(this.props.page, this.props.category, this.props.pages, nextPreviousContainer, info)
-  }
-
-  getPreviousPageData() {
-    return getPreviousPageData(this.props.page, this.props.category, this.props.pages)
-  }
-
-  getNextPageData() {
-    return getNextPageData(this.props.page, this.props.category, this.props.pages)
   }
 }
 

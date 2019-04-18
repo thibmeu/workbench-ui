@@ -45,7 +45,7 @@ export const postUrl = (url, data) => {
   return axios({ method: 'post', url: url, data: data })
 }
 
-export const getAdjacentCategoryPage = (page, category, pages, nextPreviousContainer, info) => {
+export const getAdjacentCategoryPage = (page, category, pages, nextPreviousContainer) => {
   if (nextPreviousContainer && category) {
     const categoryIndex = page.categories.map(cat => urlify(cat.toLowerCase())).indexOf(category.toLowerCase())
     if (categoryIndex !== -1) {
@@ -55,15 +55,12 @@ export const getAdjacentCategoryPage = (page, category, pages, nextPreviousConta
           page.url.toLowerCase() === nextPreviousContainer[categoryIndex].toLowerCase(),
       )
     }
-    if (info === 'next') {
-      console.log('-1 next', page.categories, category)
-    }
   }
   return null
 }
 
 export const getPreviousPageData = (page, category, pages) => {
-  const previousPage = page ? getAdjacentCategoryPage(page, category, pages, page.previous, 'prev') : null
+  const previousPage = page ? getAdjacentCategoryPage(page, category, pages, page.previous) : null
 
   let url
   let text
@@ -97,7 +94,7 @@ export const getPreviousPageData = (page, category, pages) => {
 }
 
 export const getNextPageData = (page, category, pages) => {
-  const nextPage = page ? getAdjacentCategoryPage(page, category, pages, page.next, 'next') : null
+  const nextPage = page ? getAdjacentCategoryPage(page, category, pages, page.next) : null
 
   let url
   let text
