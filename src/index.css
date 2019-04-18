@@ -325,3 +325,14 @@ code {
 .ace-dracula {
     border-radius: 8px;
 }
+
+.menu .menu-list {
+    list-style: none;
+    margin-left: 0;
+    margin-top: 0;
+}
+
+.steps.my-step-style {
+    list-style: none;
+    margin-left: 0;
+}
