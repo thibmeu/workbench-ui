@@ -104,9 +104,10 @@ class Pages extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
-  return { categories: state.categories, pages: state.pages }
-}
+const mapStateToProps = state => ({
+  categories: state.categories,
+  pages: state.pages,
+})
 
 const ConnectedPages = connect(mapStateToProps)(Pages)
 export default withRouter(ConnectedPages)
