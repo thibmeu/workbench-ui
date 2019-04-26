@@ -1,6 +1,6 @@
 import React from 'react'
 import { NavLink, Link } from 'react-router-dom'
-// import { NavHashLink } from 'react-router-hash-link'
+import CategoryFilter from '../search/CategoryFilter'
 import LoadingIndicator from './LoadingIndicator'
 import { connect } from 'react-redux'
 import { loadUserProfile } from '../../actions/user'
@@ -16,6 +16,7 @@ class Navigation extends React.Component {
     }
 
     this.handleScroll = this.handleScroll.bind(this)
+    this.setSearchActive = this.setSearchActive.bind(this)
   }
 
   componentDidMount() {
@@ -40,7 +41,9 @@ class Navigation extends React.Component {
   render() {
     return (
       <nav
-        className={`navbar is-fixed-top short-background-color-transition ${this.state.isTop ? 'is-transparent' : 'has-shadow-bottom'}`}
+        className={`navbar is-fixed-top short-background-color-transition ${
+          this.state.isTop ? 'is-transparent' : 'has-shadow-bottom'
+        }`}
         ref={el => {
           this.element = el
         }}
@@ -65,20 +68,14 @@ class Navigation extends React.Component {
         <div
           onClick={() => this.setSearchActive()}
           className={`navbar-item ${this.state.isTop ? 'has-text-white' : ''}`}
-          // activeClassName={'is-active'}
         >
           <i className={'fas fa-search'} />
         </div>
       )
     } else {
       return (
-        <div className={`navbar-item ${this.state.isTop ? 'has-text-white' : ''}`}>
-          <div className={'control is-loading has-icons-left'}>
-            <input className={'input'} type={'text'} placeholder={'Search'} />
-            <span className={'icon is-small is-left'}>
-              <i className={'fas fa-search'} />
-            </span>
-          </div>
+        <div className={`navbar-item is-1 ${this.state.isTop ? 'has-text-white' : ''}`}>
+          <CategoryFilter />
         </div>
       )
     }
@@ -124,7 +121,7 @@ class Navigation extends React.Component {
   setSearchActive() {
     this.setState({
       ...this.state,
-      isSearchActive: true,
+      isSearchActive: !this.state.isSearchActive,
     })
   }
 

@@ -425,3 +425,20 @@ code {
 .is-capitalized {
     text-transform: capitalize;
 }
+
+.is-hidden {
+    display: none;
+}
+
+.is-full-width {
+    width: 100%;
+}
+
+.navbar-end {
+    width: 100%;
+    margin-left: 0;
+}
+
+.navbar-item.is-1 {
+    flex-grow: 1;
+}

@@ -50,30 +50,24 @@ class CategoryFilter extends React.Component {
       )
     })
     return (
-      <div>
-        <div className="is-pulled-left">{this.getAvailableCategoryList()}</div>
-        <div className="clearBoth">
-          <form onSubmit={this.handleSubmit}>
-            <div className="field has-addons">
-              <div className="control  is-expanded">
-                <input
-                  className="input is-large has-text-centered"
-                  type="text"
-                  id="catFilterName"
-                  value={this.state.catFilterName}
-                  onChange={this.handleChange}
-                  placeholder="search terms"
-                />
-                <p className="control">
-                  <button type="submit" className="button is-large">
-                    Add
-                  </button>
-                </p>
-              </div>
-            </div>
-          </form>
-        </div>
-        <div className="level mb30 mt10">
+      <div className={'is-full-width'}>
+        <form onSubmit={this.handleSubmit}>
+          <div className={'control has-icons-left has-icons-right'}>
+            <input
+              className={'input'}
+              type={'text'}
+              placeholder={'Search'}
+              id="catFilterName"
+              value={this.state.catFilterName}
+              onChange={this.handleChange}
+            />
+            <span className={'icon is-small is-left'}>
+              <i className={'fas fa-search'} />
+            </span>
+          </div>
+          <button type={'submit'} className={'is-hidden'} />
+        </form>
+        <div className="level">
           <div className="level-left">
             <div className="tags">{categoryFilter}</div>
           </div>
