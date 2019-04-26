@@ -28,6 +28,13 @@ class App extends React.Component {
           <Navigation />
           <Switch>
             <Route path={'/demo'} component={Playground} />
+            <Route
+              path={'/contact'}
+              component={() => {
+                window.open('mailto:contact@blockchainworkbench.com', '_blank')
+                return null
+              }}
+            />
             <Route exact path={'/search'} component={SearchPage} />
             <Route exact path={'/'} component={Home} />
             <Route path={'/login/:app?'} component={Login} />

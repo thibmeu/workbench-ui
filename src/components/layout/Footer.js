@@ -31,7 +31,7 @@ export default function Footer() {
         </div>
         <div className="level-item ml2">
           <Link className={'has-text-white'} to={'/contact'}>
-            About
+            Contact
           </Link>
         </div>
         <div className="level-item ml2">
