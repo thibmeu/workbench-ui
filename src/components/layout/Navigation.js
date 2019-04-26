@@ -65,7 +65,7 @@ class Navigation extends React.Component {
       return (
         <NavLink
           className={`navbar-item ${this.state.isTop && !this.isSearchActive() ? 'has-text-white' : ''}`}
-          to={'search'}
+          to={'/search'}
         >
           <i className={'fas fa-search'} />
         </NavLink>
