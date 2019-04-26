@@ -451,3 +451,7 @@ code {
 .is-flex.is-justified {
     justify-content: space-between;
 }
+
+.dropdown-menu {
+    min-width: 0;
+}
