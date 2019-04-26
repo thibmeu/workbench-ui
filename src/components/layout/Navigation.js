@@ -39,7 +39,7 @@ class Navigation extends React.Component {
   render() {
     return (
       <nav
-        className={`navbar ${!this.isSearchActive() ? 'is-fixed-top' : ''} short-background-color-transition ${
+        className={`navbar is-fixed-top short-background-color-transition ${
           this.state.isTop && !this.isSearchActive() ? 'is-transparent' : 'has-shadow-bottom'
         }`}
         ref={el => {

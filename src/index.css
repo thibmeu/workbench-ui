@@ -34,12 +34,17 @@ code {
 .mb70 {
     margin-bottom: 70px;
 }
+
 .mb30 {
     margin-bottom: 30px;
 }
 
 .mb10 {
     margin-bottom: 10px;
+}
+
+.mb2 {
+    margin-bottom: 2rem;
 }
 
 .mt10 {
@@ -441,4 +446,8 @@ code {
 
 .navbar-item.is-1 {
     flex-grow: 1;
+}
+
+.is-flex.is-justified {
+    justify-content: space-between;
 }
