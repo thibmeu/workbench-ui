@@ -48,6 +48,10 @@ code {
     margin-bottom: 2rem;
 }
 
+.mt3 {
+    margin-top: 3rem;
+}
+
 .mt10 {
     margin-top: 10px;
 }
@@ -467,4 +471,13 @@ code {
 
 .tags .tag {
     margin-bottom: 0;
+}
+.partners .container {
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.partners .image > img {
+    max-height: 4rem;
+    width: auto
 }
