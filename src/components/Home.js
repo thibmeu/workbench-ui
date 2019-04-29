@@ -80,17 +80,17 @@ export default function Home() {
                 <aside className="menu">
                   <ul className="menu-list">
                     <li>
-                      <a href={''} className="text is-2">
+                      <a href={'http://'} className="text is-2">
                         Functions
                       </a>
                     </li>
                     <li>
-                      <a href={''} className="text is-2">
+                      <a href={'http://'} className="text is-2">
                         Payments
                       </a>
                     </li>
                     <li>
-                      <a href={''} className="text is-2 is-active">
+                      <a href={'http://'} className="text is-2 is-active">
                         Start Learning
                       </a>
                     </li>

@@ -274,9 +274,10 @@ code {
     padding: 0;
 }
 
+.exercise-box > .exercise-body > .has-background-warning,
 .exercise-box > .exercise-body > .has-background-grey-lighter {
     font-size: 1rem;
-    padding: .6rem 1rem .5rem;
+    padding: .6rem 1.5rem .5rem;
 }
 
 .ace_editor {
@@ -347,10 +348,6 @@ code {
     padding: 0;
 }
 
-.exercise-box > .exercise-body > .has-background-grey-lighter {
-    font-size: 1rem;
-    padding: .6rem 1rem .5rem;
-}
 
 .ace_editor {
     border-radius: 0 0 8px 8px;
@@ -480,4 +477,30 @@ code {
 .partners .image > img {
     max-height: 4rem;
     width: auto
+}
+
+
+.mcq-answers {
+    margin-bottom: 1em;
+}
+.mcq-answers > li {
+    padding: 0.1rem 0.5rem;
+    margin-bottom: 0;
+    list-style-type: none;
+}
+
+.mcq-answers > li > label {
+    width: 100%;
+}
+
+.mcq-answers > li > a {
+    padding: 0;
+}
+
+.result-box {
+    padding: 1rem 1.5rem 0.5rem;
+}
+
+.quiz-button-box {
+    margin: 1rem 1.5rem 0.5rem;
 }
