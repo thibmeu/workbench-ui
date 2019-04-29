@@ -1,11 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import {
-  CATEGORY_FILTER_TYPE,
-  addCategoryFilter,
-  changeCategoryFilterType,
-  removeCategoryFilter,
-} from '../../actions/search'
+import { addCategoryFilter, changeCategoryFilterType, removeCategoryFilter } from '../../actions/search'
 
 class CategoryFilter extends React.Component {
   constructor(props) {
@@ -41,14 +36,6 @@ class CategoryFilter extends React.Component {
   }
 
   render() {
-    const categoryFilter = this.props.categoryFilter.map((cat, idx) => {
-      return (
-        <span key={idx} className="tag catItem is-link">
-          {cat}
-          <button className="delete is-small" onClick={() => this.props.removeCategoryFilter(cat)} />
-        </span>
-      )
-    })
     return (
       <div className={'is-full-width'}>
         <form onSubmit={this.handleSubmit}>
@@ -67,36 +54,8 @@ class CategoryFilter extends React.Component {
           </div>
           <button type={'submit'} className={'is-hidden'} />
         </form>
-        <div className="level">
-          <div className="level-left">
-            <div className="tags">{categoryFilter}</div>
-          </div>
-          {this.getCategoryFilterTypeJSX()}
-        </div>
       </div>
     )
-  }
-
-  getCategoryFilterTypeJSX() {
-    return this.props.categoryFilter.length >= 2 ? (
-      <div className="is-flex level-right">
-        <span className="has-text-grey-light mr10">combine category filters with </span>
-        <span className="buttons has-addons">
-          <button
-            className={this.getClassesForCategoryFilterTypeButton(CATEGORY_FILTER_TYPE.AND)}
-            onClick={() => this.handleTypeButtonClick(CATEGORY_FILTER_TYPE.AND)}
-          >
-            <span>AND</span>
-          </button>
-          <button
-            className={this.getClassesForCategoryFilterTypeButton(CATEGORY_FILTER_TYPE.OR)}
-            onClick={() => this.handleTypeButtonClick(CATEGORY_FILTER_TYPE.OR)}
-          >
-            <span>OR</span>
-          </button>
-        </span>
-      </div>
-    ) : null
   }
 
   handleChange(event) {

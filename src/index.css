@@ -21,6 +21,7 @@ code {
 .catItem {
     margin-left: 0;
     margin-right: 5px;
+    margin-bottom: 0;
 }
 
 .catLink {
@@ -454,4 +455,16 @@ code {
 
 .dropdown-menu {
     min-width: 0;
+}
+
+.is-flex.is-vcentered {
+    align-items: center;
+}
+
+.tags:not(:last-child) {
+    margin-bottom: 0;
+}
+
+.tags .tag {
+    margin-bottom: 0;
 }

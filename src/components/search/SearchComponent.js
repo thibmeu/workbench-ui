@@ -1,9 +1,8 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
 import DifficultyFilter from './DifficultyFilter'
-import CategoryFilter from './CategoryFilter'
+import SearchFilter from './SearchFilter'
 import PageList from './PageList'
-import CategoryList from './CategoryList'
 
 class Search extends React.Component {
   render() {
@@ -18,7 +17,10 @@ class Search extends React.Component {
               <span>Back</span>
             </h3>
           </a>
-          <DifficultyFilter />
+          <div className={'filters is-flex'}>
+            <SearchFilter />
+            <DifficultyFilter />
+          </div>
         </div>
         <PageList />
       </section>
