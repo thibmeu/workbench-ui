@@ -1,7 +1,7 @@
 import React from 'react'
 import { Redirect, withRouter } from 'react-router-dom'
 import TitleHeader from '../layout/TitleHeader'
-import CategorySteps from '../layout/CategorySteps'
+import CategorySteps from './CategorySteps'
 import CategorySidebar from '../layout/CategorySidebar'
 import connect from 'react-redux/es/connect/connect'
 import { buildCategoryUrl, urlify } from '../../lib/helpers'
@@ -25,7 +25,7 @@ class Page extends React.Component {
     }
     return (
       <section className="hero">
-        <TitleHeader />
+        <TitleHeader page={page} category={categoryName} />
         <div className="hero-body content">
           <CategorySteps />
           <div className="columns">
