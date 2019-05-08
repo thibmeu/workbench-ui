@@ -106,7 +106,7 @@ export default function Home() {
                 <aside className="menu">
                   <ul className="menu-list">
                     <li>
-                      <Link to={'/Intro/Merkle_Tree'} className="text is-2">
+                      <Link to={'/pages//Intro/Merkle_Tree'} className="text is-2">
                         Data structures
                       </Link>
                     </li>
@@ -160,13 +160,20 @@ export default function Home() {
             <a
               href={'https://github.com/blockchainworkbench'}
               className={'button is-medium is-white is-inverted is-outlined'}
+              target={'_blank'}
+              rel={'noopener noreferrer'}
             >
               <span className={'icon'}>
                 <i className={'fab fa-github'} />
               </span>
               <span>Github</span>
             </a>
-            <a href={'https://donation.url'} className={'button is-medium is-dark'}>
+            <a
+              href={'https://donation.url'}
+              className={'button is-medium is-dark'}
+              target={'_blank'}
+              rel={'noopener noreferrer'}
+            >
               <span className={'icon'}>
                 <i className={'fab fa-bitcoin'} />
               </span>
